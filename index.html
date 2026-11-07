@@ -220,6 +220,8 @@ select { width: 100%; height: 38px; padding: 0 8px; border: 1px solid var(--line
 #toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); background: var(--sel-bg); color: var(--sel-fg); padding: 8px 16px; border-radius: 99px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 20; }
 #toast.on { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { #toast { transition: none; } }
+.site-note { max-width: 1320px; margin: 40px auto 0; padding: 20px max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); border-top: 1px solid var(--line); font-size: 12px; line-height: 1.8; color: var(--ink-2); }
+.site-note p { margin: 0; max-width: 80ch; }
 </style>
 </head>
 <body>
@@ -327,6 +329,10 @@ select { width: 100%; height: 38px; padding: 0 8px; border: 1px solid var(--line
     </div>
   </div>
 </div>
+<footer class="site-note">
+  <p>このサイトでは、アクセス状況を把握するために Cloudflare Web Analytics を利用しています。Cookie は使わず、個人を特定する情報は集めません。配色・画像・スライドの内容と編集中の設定は、お使いのブラウザの中だけで処理・保存され、サーバーには送信されません。</p>
+  <p>© IRODORI compass</p>
+</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.12.0/pptxgen.bundle.js"></script>
@@ -1054,5 +1060,7 @@ select { width: 100%; height: 38px; padding: 0 8px; border: 1px solid var(--line
   update();
 })();
 </script>
+<!-- Cloudflare Web Analytics: token を、Cloudflare で発行された値に置き換えてください -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "ここにトークンを貼る"}'></script>
 </body>
 </html>
