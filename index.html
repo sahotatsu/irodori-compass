@@ -12,46 +12,68 @@
 <title>IRODORI compass</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;600;700&family=DM+Sans:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600;700&family=Lato:wght@400;700&family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&family=BIZ+UDPGothic:wght@400;700&family=Shippori+Mincho:wght@400;600;700&family=M+PLUS+1p:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;600;700&family=DM+Sans:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600;700&family=Lato:wght@400;700&family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@400;500;700&family=BIZ+UDPGothic:wght@400;700&family=Shippori+Mincho:wght@400;600;700&family=M+PLUS+1p:wght@400;500;700&family=DM+Mono:wght@400;500&family=Jost:wght@300;500;600&display=swap">
 <style>
 /* Layout: 左に設定パネル(固定)、右に 選択中の配色 → 提案6案 → スライド2枚 */
 :root {
-  --bg: #eceff3;
+  --bg: #ededed;
   --panel: #ffffff;
-  --ink: #1b2027;
-  --ink-2: #566070;
-  --line: #d8dde4;
-  --field: #f5f7f9;
-  --sel-bg: #1b2027;
+  --ink: #141414;
+  --ink-2: #5e5e5e;
+  --line: #dadada;
+  --field: #f5f5f5;
+  --sel-bg: #141414;
   --sel-fg: #ffffff;
-  --focus: #2f6fed;
+  --focus: #141414;
+  --head-font: "Jost", "Noto Sans JP", system-ui, sans-serif;
   --ui: "Noto Sans JP", system-ui, -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
   --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #101317; --panel: #1a1e23; --ink: #e9ecf0; --ink-2: #99a3b0; --line: #2c333b;
-    --field: #12161a; --sel-bg: #e9ecf0; --sel-fg: #101317; --focus: #7aa5ff; color-scheme: dark;
+    --bg: #131313; --panel: #1c1c1c; --ink: #ececec; --ink-2: #9b9b9b; --line: #2f2f2f;
+    --field: #161616; --sel-bg: #ececec; --sel-fg: #141414; --focus: #ececec; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #101317; --panel: #1a1e23; --ink: #e9ecf0; --ink-2: #99a3b0; --line: #2c333b;
-  --field: #12161a; --sel-bg: #e9ecf0; --sel-fg: #101317; --focus: #7aa5ff; color-scheme: dark;
+  --bg: #131313; --panel: #1c1c1c; --ink: #ececec; --ink-2: #9b9b9b; --line: #2f2f2f;
+  --field: #161616; --sel-bg: #ececec; --sel-fg: #141414; --focus: #ececec; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body {
   background: var(--bg); color: var(--ink); font-family: var(--ui); font-size: 14px; line-height: 1.6;
-  padding-block: 24px 48px;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding: 0 0 56px;
 }
 button, input, select { font: inherit; color: inherit; }
 button { cursor: pointer; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 
-.page { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
-.top h1 { margin: 0; font-size: 24px; line-height: 1.3; font-weight: 700; letter-spacing: .01em; }
-.top p { margin: 6px 0 0; color: var(--ink-2); max-width: 62ch; }
+.page { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;
+  padding: 28px max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
+
+/* ---- Hero（ダークの帯。配色パレットの色は右の図だけに出す） ---- */
+.hero { background: radial-gradient(120% 140% at 85% 0%, #1f1f21 0%, #0f0f10 55%, #09090a 100%); color: #f2f2f2; border-bottom: 1px solid #262626; }
+.hero-in { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 400px); gap: 48px; align-items: center;
+  padding: 52px max(16px, env(safe-area-inset-right, 0px)) 56px max(16px, env(safe-area-inset-left, 0px)); }
+.hero .eyebrow { margin: 0 0 18px; font-family: var(--head-font); font-weight: 500; font-size: 12px; letter-spacing: .32em; color: #8c8c8c; }
+.hero h1 { margin: 0; font-family: var(--head-font); font-weight: 600; font-size: clamp(44px, 7vw, 84px); line-height: 1; letter-spacing: .05em; }
+.hero h1 span { font-weight: 300; letter-spacing: .02em; color: #c9c9c9; }
+.hero .lede { margin: 22px 0 0; max-width: 46ch; font-size: 15px; line-height: 1.85; color: #a9a9a9; }
+.ratios { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 26px 0 0; padding: 0; list-style: none; font-size: 12px; color: #8c8c8c; letter-spacing: .04em; }
+.ratios li { display: flex; align-items: center; gap: 8px; }
+.ratios i { width: 10px; height: 10px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.18); }
+.ratios b { font-family: var(--mono); font-weight: 500; color: #f2f2f2; font-variant-numeric: tabular-nums; }
+.hero-art { aspect-ratio: 1.618 / 1; display: grid; grid-template-columns: 61.8% 38.2%; grid-template-rows: 61.8% 38.2%; border-radius: 4px; overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 32px 64px -16px rgba(0,0,0,.7); }
+.hero-art > div { transition: background-color .35s; }
+.a-base { grid-row: 1 / 3; background: var(--h-base, #f5f7fa); }
+.a-main { background: var(--h-main, #1f4e8c); }
+.a-accent { background: var(--h-accent, #ea8a19); }
+@media (max-width: 760px) {
+  .hero-in { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 36px; padding-bottom: 40px; }
+  .hero-art { max-width: 420px; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-art > div { transition: none; } }
 
 .layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
 @media (min-width: 980px) {
@@ -197,11 +219,22 @@ select { width: 100%; height: 38px; padding: 0 8px; border: 1px solid var(--line
 </style>
 </head>
 <body>
+<header class="hero" id="hero">
+  <div class="hero-in">
+    <div>
+      <p class="eyebrow">COLOR PALETTE GENERATOR</p>
+      <h1>IRODORI <span>compass</span></h1>
+      <p class="lede">メイン・アクセント・ベースのうち1色を決めると、残りの2色を黄金比の面積で提案します。スライドを組んで、PowerPointに書き出せます。</p>
+      <ul class="ratios" aria-label="面積比">
+        <li><i style="background:var(--h-base,#f5f7fa)"></i><b>61.8</b>ベース</li>
+        <li><i style="background:var(--h-main,#1f4e8c)"></i><b>23.6</b>メイン</li>
+        <li><i style="background:var(--h-accent,#ea8a19)"></i><b>14.6</b>アクセント</li>
+      </ul>
+    </div>
+    <div class="hero-art" aria-hidden="true"><div class="a-base"></div><div class="a-main"></div><div class="a-accent"></div></div>
+  </div>
+</header>
 <div class="page">
-  <header class="top">
-    <h1>IRODORI compass</h1>
-    <p>メイン・アクセント・ベースのうち1色を決めると、残りの2色を提案します。面積比は黄金比（ベース 61.8 : メイン 23.6 : アクセント 14.6）です。スライドを組んで、PowerPointに書き出せます。</p>
-  </header>
 
   <div class="layout">
     <aside class="controls" aria-label="設定">
@@ -927,9 +960,12 @@ select { width: 100%; height: 38px; padding: 0 8px; border: 1px solid var(--line
   }
   $('#export').addEventListener('click', exportPptx);
 
+  function heroColors(p) {
+    var h = $('#hero').style; h.setProperty('--h-base', p.base); h.setProperty('--h-main', p.main); h.setProperty('--h-accent', p.accent);
+  }
   function update() {
     var pals = VARS.map(function (_, i) { return paletteFor(i); });
-    renderControls(); renderGrid(pals); renderSummary(pals[state.sel]); renderDeck(pals[state.sel]); save();
+    renderControls(); renderGrid(pals); renderSummary(pals[state.sel]); renderDeck(pals[state.sel]); heroColors(pals[state.sel]); save();
   }
 
   /* ---------- 操作 ---------- */
